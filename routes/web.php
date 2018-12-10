@@ -19,7 +19,7 @@ Route::resource('employees', 'EmployeesController');
 
 Route::get('/attendance', 'AttendanceController@index');
 
-Route::post('/attendance', 'AttendanceController@importData');
+Route::post('/attendance', 'AttendanceController@upload');
     
 
 
