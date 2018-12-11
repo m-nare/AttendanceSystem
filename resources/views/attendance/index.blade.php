@@ -28,7 +28,7 @@
                 
                 @if(count($attendance_csvs)>0)
                     @foreach($attendance_csvs as $attendance_csv)
-                        <a href="/attendance/importData/">{{ $attendance_csv->file_name }}</a>
+                        <a href="/attendance/{{ $attendance_csv->file_name }}/import">{{ $attendance_csv->file_name }}</a>
                         <br>
                     @endforeach
                 @else
