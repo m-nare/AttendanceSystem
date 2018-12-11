@@ -7,7 +7,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Attendance</h1><br><br>
+    <h1 class="text-center">Uploads</h1><br><br>
 
         <div class="row justify-content-md-center">
             <div class="col-sm-6">
@@ -21,6 +21,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
+        <br><br>
 
         <div class="row justify-content-md-center">
             <div class="col-sm-6">
@@ -31,6 +32,7 @@
                         <a href="/attendance/{{ $attendance_csv->file_name }}/import">{{ $attendance_csv->file_name }}</a>
                         <br>
                     @endforeach
+                    <br><br>
                 @else
                     <p>No uploads to display</p>
                 @endif

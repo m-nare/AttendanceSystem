@@ -30,6 +30,7 @@
         </tr>
         
     @endforeach
+
 @else
     <p>No records to display.</p>
 @endif

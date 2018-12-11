@@ -27,7 +27,7 @@
                     <a class="nav-link" href="/employees">Employees</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/attendance">Attendance</a>
+                    <a class="nav-link" href="/attendance">Upload</a>
                   </li>
             </ul>
 

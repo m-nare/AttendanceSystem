@@ -22,6 +22,7 @@ Route::get('/attendance', 'AttendanceController@index');
 Route::post('/attendance', 'AttendanceController@upload');
 
 Route::get('/attendance/{attendance_csv}/import', 'AttendanceController@import');
+
     
 
 

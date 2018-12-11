@@ -7,9 +7,11 @@ use App\Attendance_CSV;
 use League\Csv\Reader;
 use League\Csv\Statement;
 use Carbon\Carbon;
+use App\AttendanceRecord;
 
 class AttendanceController extends Controller
 {
+    
     public function index(){
         $attendance_csvs = Attendance_CSV::orderBy('created_at', 'desc')->get();
 
@@ -81,8 +83,6 @@ class AttendanceController extends Controller
                 $ot_hours_string = '0';
             }
 
-            //$record['worked_hours'] = $worked_hours_string;
-
             $attendance_records[] = [ "staff_id" => $record['Staff-ID'],
                                       "name" => $record['name'],
                                       "clock_in" => $record['clock-in'],
@@ -92,7 +92,25 @@ class AttendanceController extends Controller
                                     ];
         }   
 
-        
+        $this->store($attendance_records);
+
         return view('attendance.view')->with('attendance_records', $attendance_records);
+    }
+
+    public function store($records){
+
+        foreach($records as $record){
+            $att_record = new AttendanceRecord();
+            $att_record->staff_id = $record["staff_id"];
+            $att_record->name = $record["name"];
+            $att_record->clock_in = $record['clock_in'];
+            $att_record->clock_out = $record['clock_out'];
+            $att_record->worked_hours = $record['worked_hours'];
+            $att_record->ot_hours = $record['ot_hours'];
+            $att_record->save();
+        }
+
+       // return redirect('/attendance')->with('success', 'Attendance records added');
+        
     }
 }
