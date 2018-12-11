@@ -31,6 +31,12 @@
                     @foreach($attendance_csvs as $attendance_csv)
                         <a href="/attendance/{{ $attendance_csv->file_name }}/import">{{ $attendance_csv->file_name }}</a>
                         <br>
+
+                        {!!Form::open(['action' => ['AttendanceController@destroy', $attendance_csv->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                            {{Form::hidden('_method', 'DELETE')}}
+                            {{Form::submit('Delete upload', ['class' => 'btn btn-danger'])}}
+                        {!!Form::close()!!} 
+                        <hr><br>
                     @endforeach
                     <br><br>
                 @else

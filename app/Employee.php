@@ -13,7 +13,13 @@ class Employee extends Model
 	public $primaryKey = 'staff_id';
     
     //Timestamps
-	public $timestamps = true;
+    public $timestamps = true;
+    
+    
+    public function attendancerecord()
+	{
+		return $this->hasMany('App\AttendanceRecord');
+	}
 }
 
 

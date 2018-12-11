@@ -17,6 +17,8 @@ Route::get('/about', 'PagesController@about');
 
 Route::resource('employees', 'EmployeesController');
 
+Route::resource('attendance', 'AttendanceController');
+
 Route::get('/attendance', 'AttendanceController@index');
 
 Route::post('/attendance', 'AttendanceController@upload');

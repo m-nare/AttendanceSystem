@@ -13,5 +13,10 @@ class AttendanceRecord extends Model
 	public $primaryKey = 'id';
     
     //Timestamps
-	public $timestamps = true;
+    public $timestamps = true;
+    
+    public function employee()
+	{
+	    return $this->belongsTo('App\Employee');
+    }
 }

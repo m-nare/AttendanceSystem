@@ -8,6 +8,7 @@ use League\Csv\Reader;
 use League\Csv\Statement;
 use Carbon\Carbon;
 use App\AttendanceRecord;
+use Illuminate\Support\Facades\Storage;
 
 class AttendanceController extends Controller
 {
@@ -130,5 +131,16 @@ class AttendanceController extends Controller
 
        // return redirect('/attendance')->with('success', 'Attendance records added');
         
+    }
+
+    public function destroy($id){
+        $attendance_csv = Attendance_CSV::find($id);
+
+        // Delete Image
+        Storage::delete('public/attendance/'.$attendance_csv->file_name);
+        
+        $attendance_csv->delete();
+
+        return redirect('/attendance')->with('success', 'Upload removed');
     }
 }
