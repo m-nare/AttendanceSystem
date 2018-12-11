@@ -59,13 +59,19 @@ class AttendanceController extends Controller
         
 
         foreach ($records as $record) {
-            
-            // worked hours calculation
-            $parts = explode(".", $record['clock-in']);
-            $start_seconds = (int) $parts[0] * 3600 + (int) $parts[1] * 60 ;
+            // get date
+            $date = substr($record['clock-in'], 0, 10);
 
-            $parts = explode(".", $record['clock-out']);
-            $finish_seconds = (int) $parts[0] * 3600 + (int) $parts[1] * 60 ;
+            // get time
+            $clock_in = substr($record['clock-in'], 11);
+            $clock_out = substr($record['clock-out'], 11);
+
+            // worked hours calculation
+            $parts = explode(":", $clock_in);
+            $start_seconds = (int) $parts[0] * 3600 + (int) $parts[1] * 60 + (int) $parts[2];
+
+            $parts = explode(":", $clock_out);
+            $finish_seconds = (int) $parts[0] * 3600 + (int) $parts[1] * 60 + (int) $parts[2] ;
 
             $worked_seconds = $finish_seconds - $start_seconds;
             $worked_hours = round($worked_seconds / 3600, 2) ;
