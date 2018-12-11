@@ -83,12 +83,23 @@ class AttendanceController extends Controller
                 $ot_hours_string = '0';
             }
 
+            // on_time
+            $work_start = (8 * 3600) + (30 * 60);
+            if($start_seconds > $work_start)
+            {
+                $on_time = 1;
+            }
+            else{
+                $on_time = 0;
+            }
+
             $attendance_records[] = [ "staff_id" => $record['Staff-ID'],
                                       "name" => $record['name'],
                                       "clock_in" => $record['clock-in'],
                                       "clock_out" => $record['clock-out'],
                                       "worked_hours" => $worked_hours_string,
-                                      "ot_hours" => $ot_hours_string
+                                      "ot_hours" => $ot_hours_string,
+                                      "on_time" => $on_time
                                     ];
         }   
 
@@ -107,6 +118,7 @@ class AttendanceController extends Controller
             $att_record->clock_out = $record['clock_out'];
             $att_record->worked_hours = $record['worked_hours'];
             $att_record->ot_hours = $record['ot_hours'];
+            $att_record->on_time = $record['on_time'];
             $att_record->save();
         }
 

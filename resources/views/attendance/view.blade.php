@@ -21,13 +21,23 @@
             </thead>
             <tbody>  
     @foreach($attendance_records as $record)
-        <tr>
-            <td>{{ $record['name'] }}</td>
-            <td>{{ $record['clock_in'] }}</td>
-            <td>{{ $record['clock_out'] }}</td>
-            <td>{{ $record['worked_hours'] }}</td>
-            <td>{{ $record['ot_hours'] }}</td>
-        </tr>
+        @if($record['on_time'] == '0')
+            <tr>    
+                <td>{{ $record['name'] }}</td>
+                <td>{{ $record['clock_in'] }}</td>
+                <td>{{ $record['clock_out'] }}</td>
+                <td>{{ $record['worked_hours'] }}</td>
+                <td>{{ $record['ot_hours'] }}</td>
+            </tr>
+        @else
+            <tr class="table-danger">   
+                <td>{{ $record['name'] }}</td>
+                <td>{{ $record['clock_in'] }}</td>
+                <td>{{ $record['clock_out'] }}</td>
+                <td>{{ $record['worked_hours'] }}</td>
+                <td>{{ $record['ot_hours'] }}</td>
+            </tr>
+        @endif
         
     @endforeach
 
