@@ -28,7 +28,7 @@
                             <li class="list-group-item list-group-item-info">Email: {{$employee->email}}</li>
                             <li class="list-group-item list-group-item-info">Date of Birth: {{$employee->date_of_birth}}</li>
                             <li class="list-group-item list-group-item-info">
-                                <a href="/employees/{{$employee->staff_id}}/edit" class="btn btn-primary btn-block">Edit Employee</a>
+                                <a href="/employees/{{$employee->staff_id}}/edit" class="btn btn-primary btn-block pull-left">Edit Employee</a>
                                 <br>
 
                                 {!!Form::open(['action' => ['EmployeesController@destroy', $employee->staff_id], 'method' => 'POST', 'class' => 'pull-right'])!!}

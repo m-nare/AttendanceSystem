@@ -26,7 +26,7 @@ class RecordsController extends Controller
      */
     public function create()
     {
-        //
+        return view('records.create');
     }
 
     /**
@@ -37,7 +37,28 @@ class RecordsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'staff_id' => 'required|max:10',
+            'name' => 'required|max:191',
+            'clock_in' => 'required',
+            'clock_out' => 'required',
+            'worked_hours' => 'required|',
+            'ot_hours' => 'required|',
+            'on_time' => 'required',
+        ]);
+
+        // create attendance record
+        $record = new AttendanceRecord;
+        $record->staff_id = $request->input('staff_id');
+        $record->name = $request->input('name');
+        $record->clock_in = $request->input('clock_in');
+        $record->clock_out = $request->input('clock_out');
+        $record->worked_hours = $request->input('worked_hours');
+        $record->ot_hours = $request->input('ot_hours');
+        $record->on_time = $request->input('on_time');
+        $record->save();
+		
+		return redirect('/records')->with('success', 'Attendance Record Added');
     }
 
     /**
@@ -59,7 +80,8 @@ class RecordsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $record = AttendanceRecord::find($id);
+		return view('records.edit')->with('record', $record);
     }
 
     /**
@@ -71,7 +93,28 @@ class RecordsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'staff_id' => 'required|max:10',
+            'name' => 'required|max:191',
+            'clock_in' => 'required',
+            'clock_out' => 'required',
+            'worked_hours' => 'required|',
+            'ot_hours' => 'required|',
+            'on_time' => 'required',
+        ]);
+
+        // update record
+        $record = AttendanceRecord::find($id);
+        $record->staff_id = $request->input('staff_id');
+        $record->name = $request->input('name');
+        $record->clock_in = $request->input('clock_in');
+        $record->clock_out = $request->input('clock_out');
+        $record->worked_hours = $request->input('worked_hours');
+        $record->ot_hours = $request->input('ot_hours');
+        $record->on_time = $request->input('on_time');
+        $record->save();
+		
+		return redirect('/records')->with('success', 'Attendance Record Updated');
     }
 
     /**
@@ -82,6 +125,8 @@ class RecordsController extends Controller
      */
     public function destroy($id)
     {
-        //
+		$record = AttendanceRecord::find($id);
+		$record->delete();
+		return redirect('/records')->with('success', 'Attendance Record Removed');
     }
 }

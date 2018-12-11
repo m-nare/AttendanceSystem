@@ -31,6 +31,14 @@
                     <td>{{ $record['clock_out'] }}</td>
                     <td>{{ $record['worked_hours'] }}</td>
                     <td>{{ $record['ot_hours'] }}</td>
+                    <td>
+                        <a href="/records/{{$record->id}}/edit" class="btn btn-primary btn-sm pull-left">Edit</a>
+    
+                        {!!Form::open(['action' => ['RecordsController@destroy', $record->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                            {{Form::hidden('_method', 'DELETE')}}
+                            {{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm'])}}
+                        {!!Form::close()!!} 
+                    </td>
                 </tr>
             @else
                 <tr class="table-danger">
@@ -40,6 +48,14 @@
                     <td>{{ $record['clock_out'] }}</td>
                     <td>{{ $record['worked_hours'] }}</td>
                     <td>{{ $record['ot_hours'] }}</td>
+                    <td>
+                        <a href="/records/{{$record->id}}/edit" class="btn btn-primary btn-sm pull-left">Edit</a>
+
+                        {!!Form::open(['action' => ['RecordsController@destroy', $record->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                            {{Form::hidden('_method', 'DELETE')}}
+                            {{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm'])}}
+                        {!!Form::close()!!} 
+                    </td>
                 </tr>
             @endif
         

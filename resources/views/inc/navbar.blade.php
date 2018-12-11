@@ -29,10 +29,14 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/attendance">Upload</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/records">Attendance Records</a>
+                  </li>
             </ul>
 
             <ul class="nav navbar-nav ml-auto">
                 <li><a class="nav-link" href="/employees/create">Create Employee</a></li>
+                <li><a class="nav-link" href="/records/create">Create Record</a></li>
             </ul>
         </div>
     </div>
