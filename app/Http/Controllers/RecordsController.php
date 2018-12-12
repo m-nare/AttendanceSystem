@@ -38,10 +38,16 @@ class RecordsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'staff_id' => 'required|max:10',
-            'name' => 'required|max:191',
-            'clock_in' => 'required',
-            'clock_out' => 'required',
+            'staff_id' => 'required|max:10|numeric',
+            'name' => 'required|max:191|min:3',
+            'clock_in'=> array(
+                'required',
+                'regex:/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/'
+            ),
+            'clock_out' => array(
+                'required',
+                'regex:/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/'
+            ),
             'worked_hours' => 'required|',
             'ot_hours' => 'required|',
             'on_time' => 'required',
@@ -94,10 +100,16 @@ class RecordsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'staff_id' => 'required|max:10',
-            'name' => 'required|max:191',
-            'clock_in' => 'required',
-            'clock_out' => 'required',
+            'staff_id' => 'required|max:10|numeric',
+            'name' => 'required|max:191|min:3',
+            'clock_in'=> array(
+                'required',
+                'regex:/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/'
+            ),
+            'clock_out' => array(
+                'required',
+                'regex:/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/'
+            ),
             'worked_hours' => 'required|',
             'ot_hours' => 'required|',
             'on_time' => 'required',
